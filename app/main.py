@@ -32,10 +32,8 @@ async def preguntar(pregunta: Pregunta):
                     "content": pregunta.texto
                 }
             ],
-            stream=True
         )
-        for part in response:
-            print(part['message']['content'], end='', flush=True)
+
         return {"data": response['message']['content']}
     except ValidationError as e:
         raise HTTPException(status_code=400, detail=f"Error de validación: {e}")
